@@ -1,0 +1,401 @@
+---
+title: "PL_simulation"
+author: "Kristof Menyhert"
+date: '2020 december 28 '
+output: html_document
+---
+
+# Predicting the outcome of the English Premier League by using Monte Carlo Method
+
+## Introduction
+
+I have two hobbies: programming and making predictions. I also have some background in math, statistics and probability theory. These things also come handy since I use them at work as a data scientist.
+
+I really like football and sometimes bet on matches. Nowadays bookmakers offer a lots of market, basically you can bet on nearly anything from who will be the next president of the USA to which county is going to win the next Eurovision song contest. But sport events are very popular when it comes to betting.
+
+In this article I am going to show how I used Monte Carlo Method to predict the probabilities of each English Premier League clubs using R. What is cool that you can do it yourself by imputing your own predictions for each remaining matches and by using the method and the script provided here you can do your own calculation and compare it with the actual odds.
+
+If you trust yourself you can find value on the market and make money.
+
+## Background - Understanding how betting works and what to look for
+
+One concept that is essential to understand if you want to make money on the long run by betting on anything that you should look for value bets. What does this mean in practice? That you are looking for events that you think are misspriced, and you bet on an outcome where the real odds are in your favor.
+
+Let me give you a small example, there is a football match today. Newcastle is playing against Liverpool. On [Betfair](https://www.betfair.com/exchange/plus/) - that operates the world's largest online betting exchange - you can find the following odds:   
+
+![odds](C:/Users/x004896/OneDrive - Audax/fogadas_simulation/article/initial_odds.PNG)
+
+We can convert these odds to probabilities by using the following formula: $\dfrac{1}{odds} \times 100 = probabily$. In this case the odds on the betting site reflexts the following probabilities for a Chelsea win: $\dfrac{1}{3.2} \times 100 = 31.25\%$  
+
+So if you think that Liverpool has better chances to win than 75.8% than you should bet on this outcome, on the long run you are going to make money if you are right. However if you think that the chances are lower you can easily see that you should bet against them.
+
+## The market of - The Winner of Englis Premier league 2020/21 
+
+I would like to predict the final standing of the teams in the Premier League and I would like to compare my calculated probabilities to odds that are offered on Betfair.
+
+As of today (2020.12.30.) on Betfair the odds are the following for the [winner of the PL](https://www.betfair.com/exchange/plus/football/market/1.171034359):
+
+![winner_odds](C:/Users/x004896/OneDrive - Audax/fogadas_simulation/article/who_will_win_odds.png)  
+
+We would like to know that is this odds are in our favor or not? Should we bet on Liverpool or Man City or any other team? What would you do?
+
+If you are interested there are other markets on Betfair as well when it comes to the final standings 
+
+## Okey, but what is Monte Carlo Method (MCM)?
+
+I am not a mathematician so excuse me if I am not using the correct terms but this is how I would tell what MCM is in short:
+
+Monte Carlo Method is commonly used for calculating the outcomes of non-deterministic processes where calculating the exact chances using formulas is hard or even impossible. Many times you can approach these problems in another way. You can simulate the results by drawing samples from a known probability distribution and then simulate the final outcome many many times. Then you can see the chances of occurrence for each outcomes.
+
+Lets say that you would like to know what is the chance of rolling exactly 12 by rolling 5 dice. It would be possible to calculate this by using mathematical formulas but also you can simulate 1 million 5 dice rolls and check how many of those would be exactly 12. In this way you can approximate the chance by counting the favorable outcomes and divide it by 1 million. The more you simulate it will be much closer to the real probability. In this example case it will be very close since 1 million rolls is a lot.
+
+Btw: you can use this method for many things, including approximating Pi. Learn more on the wikipedia side of [Monte Carlo Method](https://en.wikipedia.org/wiki/Monte_Carlo_method)
+
+*** 
+
+# Let's start programing
+
+In this tutorial I will try to explain how I did this simulation step by step. I used R since this is the most comfortable language to use for me.
+
+First lets create some funcctions that we can use in the simulaton part.
+
+## Load packages
+
+For this purpose only 4-5 extra library is enough to use.
+
+```{r, warning = FALSE, message=FALSE}
+library(data.table)
+library(ggplot2)
+library(stringr)
+library(DT)
+library(dplyr)
+```
+
+## The data that I have and what I prepared before
+
+You can find the CSV file that I used in the following link at my Github. I recomend that you download the CSV
+
+### Read in data
+
+```{r}
+pl_fix <- fread("../data/epl-2020.csv")
+```
+
+```{r}
+datatable(pl_fix)
+```
+I have a .csv file with every Premier league matches including those which are already played and also those that have not played yet. Those that are not played yet are indicated with an 'x' in the 'notyetplayed' column and there are the chances of the outcomes for each match are written in the 'home_chance', 'draw_chance' and 'away_chance' column.
+
+I imputed these probabilities based on what I think. Sadly it is not based on any model it just what I think of each match. So if you do not think as I think you can modify or estimate these chances by your own.
+
+It is important to mention here that the Monte Carlo Simulation is using these probabilities to calculate the final chances so everyting is based on these chances.
+
+```{r}
+#pl_fix <- pl_fix[`Round Number` < 24]
+#pl_fix <- pl_fix[notyetplayed != "x"]
+```
+
+```{r}
+#london_clubs <- c("Arsenal", "Chelsea", "Crystal Palace", "West Ham", "Spurs", "Fulham")
+#pl_fix <- pl_fix[`Home Team` %in% london_clubs & `Away Team` %in% london_clubs]
+```
+
+
+## Extract Result
+
+We need to decide the winning team based on the result so I am extracting the numbers from the 'Result' column
+
+```{r}
+# put them into a new columns
+
+pl_fix$result_home <- sub("-.*", "", pl_fix$Result)
+pl_fix$result_away <- sub(".*-", "", pl_fix$Result)
+
+convert_sting_to_result <- function(x){
+  
+  x <- str_replace_all(string = x, pattern=" ", repl="")
+  x <- as.numeric(x)
+  
+  return(x)
+  
+}
+
+pl_fix$result_home <- convert_sting_to_result(pl_fix$result_home) 
+pl_fix$result_away <- convert_sting_to_result(pl_fix$result_away)
+```
+
+## Indicate draw (d), home (h) and away (a) indicator
+
+I am creating a new column that indicates which team won.
+
+```{r}
+
+pl_fix[, hda:= ifelse(result_home == result_away, "d", ifelse(result_home > result_away, "h", "a"))]
+
+```
+
+## Get team names and initialize the league table
+
+These are the 20 teams in the league.
+```{r}
+team_names <- unique(c(pl_fix$`Home Team`, pl_fix$`Away Team`))
+
+team_names
+```
+## Create a function that calculates how many points do each team have in each round
+
+We need to write a function which calculates the point for each of the rounds. Be careful this calculates only points for those matches that are already played.
+
+```{r}
+calculate_points <- function(pl_fix = pl_fix){
+  
+  # A function that takes in a table then calculates points for each of the rounds.
+  
+  round_table <- data.table(team = team_names, point = 0, matches_played = 0)
+
+  for (row in c(1:nrow(pl_fix))){
+  
+    result <- pl_fix[row]$hda
+    result <- as.character(result)
+    
+    home_team_name <- pl_fix[row]$`Home Team`
+    home_team_matched_played <- max(round_table[team == home_team_name]$matches_played)
+    home_team_point_before <- round_table[team == home_team_name & matches_played == home_team_matched_played]$point
+  
+    home_team_point <- ifelse(is.na(result), home_team_point_before + 0,
+                              ifelse(result == "h", home_team_point_before + 3,
+                                     ifelse(result == "d", home_team_point_before + 1,
+                                            home_team_point_before + 0)))
+    
+    away_team_name <- pl_fix[row]$`Away Team`
+  
+    away_team_matched_played <- max(round_table[team == away_team_name]$matches_played)
+    away_team_point_before <- round_table[team == away_team_name & matches_played == away_team_matched_played]$point
+  
+    away_team_point <- ifelse(is.na(result), away_team_point_before + 0,
+                              ifelse(result == "a", away_team_point_before + 3,
+                                     ifelse(result == "d", away_team_point_before + 1, away_team_point_before + 0)))
+    
+    round_table <-rbindlist(list(round_table, data.table(matches_played = home_team_matched_played + 1,
+                                                         team = home_team_name,
+                                                         point = home_team_point)),
+                            fill = T)
+    
+    round_table <-rbindlist(list(round_table, data.table(matches_played = away_team_matched_played + 1,
+                                                         team = away_team_name,
+                                                         point = away_team_point)),
+                            fill = T)
+    
+  }
+  
+  return(round_table)
+  
+}
+```
+
+Lets use the function:
+
+```{r}
+round_table <- calculate_points(pl_fix = pl_fix)
+```
+
+And lets inspect the output
+
+```{r}
+datatable(round_table)
+```
+## Create a function that extracts the final position by using the table that we just created before
+
+```{r}
+show_standings <- function(round_table = round_table){
+  
+  standing_table <- round_table[, max_match:= max(matches_played, na.rm = T), by = team]
+  standing_table <- standing_table[max_match == matches_played]
+  standing_table <- standing_table[order(-point)]
+  standing_table[, max_match:= NULL]
+  
+  return(standing_table)
+  
+}
+```
+
+```{r}
+standing_table <- show_standings(round_table = round_table)
+```
+
+```{r}
+datatable(standing_table)
+```
+If this function works correctly this calculates the Team's current league standing with the corresponding points.
+
+# Simulation part
+
+We will use the previusly created function in the simulation part.
+
+## Write probabilities where it is not present
+
+We need to impute 100 (%) for those matches that are already played for the corresponding cells. 
+
+```{r}
+
+pl_fix[notyetplayed == "" & hda == "h", home_chance:= 100]
+pl_fix[notyetplayed == "" & hda == "h", draw_chance:= 0]
+pl_fix[notyetplayed == "" & hda == "h", away_chance:= 0]
+
+pl_fix[notyetplayed == "" & hda == "d", home_chance:= 0]
+pl_fix[notyetplayed == "" & hda == "d", draw_chance:= 100]
+pl_fix[notyetplayed == "" & hda == "d", away_chance:= 0]
+
+pl_fix[notyetplayed == "" & hda == "a", home_chance:= 0]
+pl_fix[notyetplayed == "" & hda == "a", draw_chance:= 0]
+pl_fix[notyetplayed == "" & hda == "a", away_chance:= 100]
+
+```
+
+## The sample function
+
+The sample fucntion is one of the key functions that we are using. With the help of this function we can set the probabilities for home (h), draw(d), away (a) outcomes. So if we set the sample size to 10000 with the arguments below we expect around 6000 home wins, 2000 draws and 2000 away wins to happen.
+
+```{r}
+example_sample <- sample(c("h", "d", "a"), size = 10000, replace = TRUE, prob = c(60, 20, 20))
+example_sample[1:20]
+```
+```{r}
+table(example_sample)
+```
+Is that the case? More or less yes. Just randomness plays a role in it.
+
+## Writing the simulation function
+
+Out next task is to create the simulation function. 
+
+With the help of this function we write the outcomes (h/d/a) using the probabilites that we imputed for each match. We do this multiple times so we will create many possible outcomes. We can set how many times we would like to simulate with the times argument. I recomend to use minimum 100 but if you have time you can even set it to a higher number. (For me it takes couple of mins to run so be patient)
+
+```{r}
+simulate_matches <- function(fixture_table = pl_fix, times = 100){
+  
+  output_table <- data.table()
+  
+  for (simulation_number in c(1:times)){
+    
+    for(row_number in c(1:nrow(fixture_table))){
+    
+    match_row <- fixture_table[row_number]
+    
+    outcome <- sample(c("h", "d", "a"),
+                      size = 1,
+                      replace = TRUE,
+                      prob = c(match_row$home_chance, match_row$draw_chance, match_row$away_chance))
+    
+    match_row[, hda:= outcome]
+    match_row[, simulation_id:= simulation_number]
+    
+    output_table <- rbindlist(list(output_table, match_row), fill = T)
+    
+    }
+    
+  }
+  
+  return(output_table)
+  
+}
+```
+
+```{r}
+nr_simlation <- 10
+
+#run it
+simulated_matches_data <- simulate_matches(times = nr_simlation)
+```
+
+The output is a table were I have a sumulaton_id clumn which help me to identify different simulations. And of course you can see the simulated outcome in the hda column.
+
+```{r}
+datatable(simulated_matches_data[1000:1200])
+```
+
+
+## Calculate standings
+
+Now the only thing we need to do is to calculate the leagu standings for each of the simulation using the 'calculate_points' function.
+
+```{r}
+simulate_standings <- function(all_matches = simulated_matches_data){
+  
+  standings_all <- data.table()
+  
+  for (round in c(1:max(all_matches$simulation_id))){
+    
+    one_simulation <- all_matches[simulation_id == round]
+    
+    simulated_fixtures <- calculate_points(one_simulation)
+    simulated_fixtures[, simulation_id:= round]
+    
+    standings_all <- rbindlist(list(standings_all, simulated_fixtures), fill = T)
+    
+  }
+  
+  return(standings_all)
+  
+}
+```
+
+```{r}
+simulated_standings <- simulate_standings()
+```
+
+This function will return a table with the simulation_id, how many matches each team played at that given point and the points that they have.
+
+```{r}
+simulated_standings
+```
+
+# See the results
+
+Now we have everything put together. We have the simulated progression of each teams standings, and most importantly we have this simulation many times. In our case 300 times. We can see how the league standings are evolving in each round. This data might be useful for other purposes, but if we are interested only the final standing of each team we only need to have the last round standing which happens when all the team played with each other twice. There are 20 teams in the English Premier League so this number is 38. ($(20-1) \times 2$)
+
+## Get only the last round standings
+
+```{r}
+last_round_standing <- simulated_standings[matches_played == 38]
+last_round_standing <- last_round_standing[order(simulation_id, -point)]
+#write the standings to each of the simulations
+last_round_standing[, standing:= c(1:.N), by = simulation_id]
+```
+
+Note: I do not take into account what happens when there is equal points. The official rule says that if any clubs finish with the same number of points, their position in the Premier League table is determined by goal difference. In this article I do not consider this.
+
+## Count the occurances
+
+```{r}
+number_of_occ <- table(last_round_standing$team, last_round_standing$standing)
+number_of_occ
+```
+## Show the occurences in percents
+
+```{r}
+percent_table <- round(table(last_round_standing$team, last_round_standing$standing)/nr_simlation * 100, 1)
+percent_table
+```
+## Convert the percents to odds
+
+```{r}
+odds_table <- (1 / ((table(last_round_standing$team, last_round_standing$standing)/ nr_simlation)))
+odds_table
+```
+
+# Conclusion and Takeway
+
+Do you remember the question that I asked at the beginning of this article? What is your conclusion? Would you bet on Liverpool or Man City?
+
+If you trust this model, you should bet on Liverpool. Because they implied odds of winning the league is better (lower) what you can find on Betfair. In other words Liverpool has higher chances to win the League than the odds that are given on the website.
+
+```{r}
+liv_city <- data.table(odds_table)[V1 %in% c("Liverpool", "Man City") & V2 == 1]
+setnames(liv_city, old = c("V1", "V2", "N"), new = c("Team", "Position", "Implied odds using the model"), skip_absent = T)
+liv_city
+```
+
+# Misc
+
+I am not sure that I am using the correct probabilities for each of the matches. I am a football fan but estimating the probabilities of home winds, draws and away winds are hard and might be far from reality. But what you can do is to fill out the table based on your estimation and run the Monte Carlo Simulation. The simulation is correct but the underling chances might not be, so use the results at your own risk.

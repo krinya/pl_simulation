@@ -1,0 +1,279 @@
+---
+title: "PL_simulation"
+author: "Kristof Menyhert"
+date: '2020 december 28 '
+output: html_document
+---
+
+# Monte Carlo simulation of the outcome of Premier league
+
+# Load packages
+
+```{r}
+library(data.table)
+library(ggplot2)
+library(stringr)
+library(lubridate)
+library(dplyr)
+```
+
+# Read in data
+
+```{r}
+pl_fix <- fread("../data/epl-2020.csv")
+```
+
+```{r}
+#pl_fix <- pl_fix[`Round Number` < 24]
+#pl_fix <- pl_fix[nemvolt != "x"]
+```
+
+```{r}
+london_clubs <- c("Arsenal", "Chelsea", "Crystal Palace", "West Ham", "Spurs", "Fulham")
+
+#pl_fix <- pl_fix[`Home Team` %in% london_clubs & `Away Team` %in% london_clubs]
+```
+
+
+# Separete Results
+
+```{r}
+convert_sting_to_result <- function(x){
+  
+  x <- str_replace_all(string = x, pattern=" ", repl="")
+  x <- as.numeric(x)
+  
+  return(x)
+  
+}
+```
+
+
+```{r}
+pl_fix$result_home <- sub("-.*", "", pl_fix$Result)
+pl_fix$result_away <- sub(".*-", "", pl_fix$Result)
+
+pl_fix$result_home <- convert_sting_to_result(pl_fix$result_home)
+pl_fix$result_away <- convert_sting_to_result(pl_fix$result_away)
+```
+
+# Create Standings
+
+## Which one to win
+
+```{r}
+
+pl_fix[, hda:= ifelse(result_home == result_away, "d", ifelse(result_home > result_away, "h", "a"))]
+
+```
+
+## Get team names
+
+```{r}
+team_names <- unique(c(pl_fix$`Home Team`, pl_fix$`Away Team`))
+
+team_names
+```
+
+```{r}
+standings <- data.table(team_name = team_names, played_match = 0, points = 0)
+```
+
+
+```{r}
+calculate_points <- function(pl_fix = pl_fix){
+  
+  round_table <- data.table(team = team_names, point = 0, matched_played = 0)
+
+  for (row in c(1:nrow(pl_fix))){
+  
+    result <- pl_fix[row]$hda
+    result <- as.character(result)
+    
+    home_team_name <- pl_fix[row]$`Home Team`
+    home_team_matched_played <- max(round_table[team == home_team_name]$matched_played)
+    home_team_point_before <- round_table[team == home_team_name & matched_played == home_team_matched_played]$point
+  
+    home_team_point <- ifelse(is.na(result), home_team_point_before + 0,
+                              ifelse(result == "h", home_team_point_before + 3,
+                                     ifelse(result == "d", home_team_point_before + 1,
+                                            home_team_point_before + 0)))
+    
+    away_team_name <- pl_fix[row]$`Away Team`
+  
+    away_team_matched_played <- max(round_table[team == away_team_name]$matched_played)
+    away_team_point_before <- round_table[team == away_team_name & matched_played == away_team_matched_played]$point
+  
+    away_team_point <- ifelse(is.na(result), away_team_point_before + 0,
+                              ifelse(result == "a", away_team_point_before + 3,
+                                     ifelse(result == "d", away_team_point_before + 1, away_team_point_before + 0)))
+    
+    round_table <-rbindlist(list(round_table, data.table(matched_played = home_team_matched_played + 1,
+                                                         team = home_team_name,
+                                                         point = home_team_point)),
+                            fill = T)
+    
+    round_table <-rbindlist(list(round_table, data.table(matched_played = away_team_matched_played + 1,
+                                                         team = away_team_name,
+                                                         point = away_team_point)),
+                            fill = T)
+    
+  }
+  
+  return(round_table)
+  
+}
+```
+
+```{r}
+round_table <- calculate_points(pl_fix = pl_fix)
+```
+
+```{r}
+show_standings <- function(round_table = round_table){
+  
+  standing_table <- round_table[, max_match:= max(matched_played, na.rm = T), by = team]
+  standing_table <- standing_table[max_match == matched_played]
+  standing_table <- standing_table[order(-point)]
+  standing_table[, max_match:= NULL]
+  
+  return(standing_table)
+  
+}
+
+```
+
+```{r}
+standing_table <- show_standings(round_table = round_table)
+```
+
+```{r}
+standing_table
+```
+
+# Simulation
+
+## Write probabilities where it is not present
+
+```{r}
+
+pl_fix[nemvolt == "" & hda == "h", home_chance:= 100]
+pl_fix[nemvolt == "" & hda == "h", draw_chance:= 0]
+pl_fix[nemvolt == "" & hda == "h", away_chance:= 0]
+
+pl_fix[nemvolt == "" & hda == "d", home_chance:= 0]
+pl_fix[nemvolt == "" & hda == "d", draw_chance:= 100]
+pl_fix[nemvolt == "" & hda == "d", away_chance:= 0]
+
+pl_fix[nemvolt == "" & hda == "a", home_chance:= 0]
+pl_fix[nemvolt == "" & hda == "a", draw_chance:= 0]
+pl_fix[nemvolt == "" & hda == "a", away_chance:= 100]
+
+```
+
+
+```{r}
+sample(c("h", "d", "a"), size = 20, replace = TRUE, prob = c(0.8, 0.1, 0.1))
+```
+
+```{r}
+simulate_matches <- function(fixture_table = pl_fix, times = 10){
+  
+  output_table <- data.table()
+  
+  for (simulation_number in c(1:times)){
+    
+    for(row_number in c(1:nrow(fixture_table))){
+    
+    match_row <- fixture_table[row_number]
+    
+    outcome <- sample(c("h", "d", "a"),
+                      size = 1,
+                      replace = TRUE,
+                      prob = c(match_row$home_chance, match_row$draw_chance, match_row$away_chance))
+    
+    match_row[, hda:= outcome]
+    match_row[, simulation_id:= simulation_number]
+    
+    output_table <- rbindlist(list(output_table, match_row), fill = T)
+    
+    }
+    
+  }
+  
+  return(output_table)
+  
+}
+```
+
+```{r}
+nr_simlation <- 10
+
+simulated_matches_data <- simulate_matches(times = nr_simlation)
+```
+
+```{r}
+simulate_standings <- function(all_matches = simulated_matches_data){
+  
+  standings_all <- data.table()
+  
+  for (fixtures in c(1:max(all_matches$simulation_id))){
+    
+    one_simulation <- all_matches[simulation_id == fixtures]
+    
+    simulated_fixtures <- calculate_points(one_simulation)
+    simulated_fixtures[, simulation_id:= fixtures]
+    
+    standings_all <- rbindlist(list(standings_all, simulated_fixtures), fill = T)
+    
+  }
+  
+  return(standings_all)
+  
+}
+```
+
+```{r}
+simulated_standings <- simulate_standings()
+```
+
+
+```{r}
+last_round_standing <- simulated_standings[matched_played == 38]
+last_round_standing <- last_round_standing[order(simulation_id, -point)]
+last_round_standing[, standing:= c(1:.N), by = simulation_id]
+
+```
+
+```{r}
+table(last_round_standing$team, last_round_standing$standing)
+```
+```{r}
+round(table(last_round_standing$team, last_round_standing$standing)/nr_simlation * 100, 1)
+```
+```{r}
+1 / ((table(last_round_standing$team, last_round_standing$standing)/ nr_simlation))
+```
+## Handicap
+
+```{r}
+handicap_point <- fread("C:/Users/x004896/OneDrive - Audax/fogadas_simulation/data/handicap.csv")
+
+handicap_standing <- merge(simulated_standings, handicap_point, by.x = "team", by.y = "team_name", all.x = T)
+handicap_standing[, point_hc:= point + handicap]
+```
+
+
+```{r}
+last_round_standing_hc <- handicap_standing[matched_played == 38]
+last_round_standing_hc <- last_round_standing_hc[order(simulation_id, -point_hc)]
+last_round_standing_hc[, standing:= c(1:.N), by = simulation_id]
+```
+
+```{r}
+round(table(last_round_standing_hc$team, last_round_standing_hc$standing)/nr_simlation * 100, 1)
+```
+
+```{r}
+1 / ((table(last_round_standing_hc$team, last_round_standing_hc$standing)/nr_simlation))
+```
