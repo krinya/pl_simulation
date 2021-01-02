@@ -159,9 +159,9 @@ Round Number,Date,Location,Home Team,Away Team,Result,notyetplayed,home_chance,d
 16,29/12/2020 20:00,Old Trafford,Man Utd,Wolves,1-0,,,,,0,,,
 16,30/12/2020 18:00,Tottenham Hotspur Stadium,Spurs,Fulham,,x,60,25,15,100,1.666666667,4,6.666666667
 16,30/12/2020 20:00,St. James' Park,Newcastle,Liverpool,0-0,,,,,,,,
-17,1/1/2021 17:30,Goodison Park,Everton,West Ham,,x,50,29,21,100,2,3.448275862,4.761904762
-17,1/1/2021 20:00,Old Trafford,Man Utd,Aston Villa,,x,50,25,25,100,2,4,4
-17,2/1/2021 12:30,Tottenham Hotspur Stadium,Spurs,Leeds,,x,55,25,20,100,1.818181818,4,5
+17,1/1/2021 17:30,Goodison Park,Everton,West Ham,0-1,,,,,.,
+17,1/1/2021 20:00,Old Trafford,Man Utd,Aston Villa,2-1,,,,,,,,
+17,2/1/2021 12:30,Tottenham Hotspur Stadium,Spurs,Leeds,2-0,,,,,,,,
 17,2/1/2021 15:00,Selhurst Park,Crystal Palace,Sheffield Utd,,x,50,30,20,100,2,3.333333333,5
 17,2/1/2021 17:30,Amex Stadium,Brighton,Wolves,,x,37,30,33,100,2.702702703,3.333333333,3.03030303
 17,2/1/2021 20:00,The Hawthorns,West Brom,Arsenal,,x,19,23,58,100,5.263157895,4.347826087,1.724137931
@@ -170,7 +170,7 @@ Round Number,Date,Location,Home Team,Away Team,Result,notyetplayed,home_chance,d
 17,3/1/2021 16:30,Stamford Bridge,Chelsea,Man City,,x,25,30,45,100,4,3.333333333,2.222222222
 17,4/1/2021 20:00,St. Mary's Stadium,Southampton,Liverpool,,x,13,21,66,100,7.692307692,4.761904762,1.515151515
 18,12/1/2021 18:00,Bramall Lane,Sheffield Utd,Newcastle,,x,20,35,45,100,5,2.857142857,2.222222222
-18,12/1/2021 20:15,Molineux Stadium,Wolves,Everton,,x,20,30,50,100,5,3.333333333,2
+18,12/1/2021 20:15,Molineux Stadium,Wolves,Everton,,x,20,25,45,100,5,3.333333333,2
 18,13/01/2021 18:00,Etihad Stadium,Man City,Brighton,,x,80,12,8,100,1.25,8.333333333,12.5
 18,13/01/2021 20:15,Villa Park,Aston Villa,Spurs,,x,25,27,48,100,4,3.703703704,2.083333333
 18,14/01/2021 20:00,Emirates Stadium,Arsenal,Crystal Palace,,x,51,28,21,100,1.960784314,3.571428571,4.761904762
