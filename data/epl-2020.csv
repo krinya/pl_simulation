@@ -162,13 +162,13 @@
 17,1/1/2021 17:30,Goodison Park,Everton,West Ham,0-1,,,,,,,,
 17,1/1/2021 20:00,Old Trafford,Man Utd,Aston Villa,2-1,,,,,,,,
 17,2/1/2021 12:30,Tottenham Hotspur Stadium,Spurs,Leeds,3-0,,,,,,,,
-17,2/1/2021 15:00,Selhurst Park,Crystal Palace,Sheffield Utd,,x,55,25,20,100,2,3.333333333,5
-17,2/1/2021 17:30,Amex Stadium,Brighton,Wolves,,x,37,30,33,100,2.702702703,3.333333333,3.03030303
-17,2/1/2021 20:00,The Hawthorns,West Brom,Arsenal,,x,19,23,58,100,5.263157895,4.347826087,1.724137931
+17,2/1/2021 15:00,Selhurst Park,Crystal Palace,Sheffield Utd,2-0,,,,,,,,
+17,2/1/2021 17:30,Amex Stadium,Brighton,Wolves,3-3,,,,,,,,
+17,2/1/2021 20:00,The Hawthorns,West Brom,Arsenal,0-4,,,,,,,,
 17,3/1/2021 12:00,Turf Moor,Burnley,Fulham,,x,40,30,30,100,2.5,3.333333333,3.333333333
-17,3/1/2021 14:15,St. James' Park,Newcastle,Leicester,,x,20,25,55,100,5,4,1.818181818
-17,3/1/2021 16:30,Stamford Bridge,Chelsea,Man City,,x,25,30,45,100,4,3.333333333,2.222222222
-17,4/1/2021 20:00,St. Mary's Stadium,Southampton,Liverpool,,x,13,21,66,100,7.692307692,4.761904762,1.515151515
+17,3/1/2021 14:15,St. James' Park,Newcastle,Leicester,0-2,,,,,,,,
+17,3/1/2021 16:30,Stamford Bridge,Chelsea,Man City,1-3,,,,,,,,
+17,4/1/2021 20:00,St. Mary's Stadium,Southampton,Liverpool,,x,16,21,63,100,,,
 18,12/1/2021 18:00,Bramall Lane,Sheffield Utd,Newcastle,,x,20,35,45,100,5,2.857142857,2.222222222
 18,12/1/2021 20:15,Molineux Stadium,Wolves,Everton,,x,20,30,50,100,,,
 18,13/01/2021 18:00,Etihad Stadium,Man City,Brighton,,x,80,12,8,100,1.25,8.333333333,12.5
@@ -181,14 +181,14 @@
 19,16/01/2021 17:30,Villa Park,Aston Villa,Everton,,x,35,30,35,100,,,
 19,16/01/2021 20:00,King Power Stadium,Leicester,Southampton,,x,55,23,22,100,1.818181818,4.347826087,4.545454545
 19,17/01/2021 14:00,Bramall Lane,Sheffield Utd,Spurs,,x,15,25,60,100,6.666666667,4,1.666666667
-19,17/01/2021 16:30,Anfield,Liverpool,Man Utd,,x,46,27,27,100,2.173913043,3.703703704,3.703703704
+19,17/01/2021 16:30,Anfield,Liverpool,Man Utd,,x,46,27,27,100,,,
 19,17/01/2021 19:15,Etihad Stadium,Man City,Crystal Palace,,x,65,20,15,100,1.538461538,5,6.666666667
 19,18/01/2021 20:00,Emirates Stadium,Arsenal,Newcastle,,x,50,25,25,100,2,4,4
 19,19/01/2021 18:00,London Stadium,West Ham,West Brom,,x,40,35,25,100,2.5,2.857142857,4
 19,19/01/2021 20:15,King Power Stadium,Leicester,Chelsea,,x,40,28,32,100,2.5,3.571428571,3.125
 19,20/01/2021 18:00,Elland Road,Leeds,Southampton,,x,47,25,28,100,2.127659574,4,3.571428571
 19,20/01/2021 20:15,Craven Cottage,Fulham,Man Utd,,x,20,25,55,100,5,4,1.818181818
-19,21/01/2021 20:00,Anfield,Liverpool,Burnley,,x,68,19,13,100,1.470588235,5.263157895,7.692307692
+19,21/01/2021 20:00,Anfield,Liverpool,Burnley,,x,66,21,13,100,,,
 20,26/01/2021 18:00,Amex Stadium,Brighton,Fulham,,x,38,30,32,100,2.631578947,3.333333333,3.125
 20,26/01/2021 18:00,St. James' Park,Newcastle,Leeds,,x,35,28,37,100,2.857142857,3.571428571,2.702702703
 20,26/01/2021 20:15,The Hawthorns,West Brom,Man City,,x,13,21,66,100,7.692307692,4.761904762,1.515151515
@@ -198,7 +198,7 @@
 20,27/01/2021 19:30,Selhurst Park,Crystal Palace,West Ham,,x,35,35,30,100,2.857142857,2.857142857,3.333333333
 20,27/01/2021 20:15,Goodison Park,Everton,Leicester,,x,35,30,35,100,2.702702703,3.333333333,3.03030303
 20,27/01/2021 20:15,Old Trafford,Man Utd,Sheffield Utd,,x,71,17,12,100,,,
-20,28/01/2021 20:00,Tottenham Hotspur Stadium,Spurs,Liverpool,,x,30,33,37,100,3.333333333,3.03030303,2.702702703
+20,28/01/2021 20:00,Tottenham Hotspur Stadium,Spurs,Liverpool,,x,30,33,37,100,,,
 21,30/01/2021 12:30,Goodison Park,Everton,Newcastle,,x,51,26,23,100,1.960784314,3.846153846,4.347826087
 21,30/01/2021 15:00,Stamford Bridge,Chelsea,Burnley,,x,58,25,17,100,1.724137931,4,5.882352941
 21,30/01/2021 15:00,Selhurst Park,Crystal Palace,Wolves,,x,42,30,28,100,2.380952381,3.333333333,3.571428571
@@ -208,7 +208,7 @@
 21,30/01/2021 20:00,St. Mary's Stadium,Southampton,Aston Villa,,x,30,30,40,100,3.333333333,3.333333333,2.5
 21,31/01/2021 14:00,Amex Stadium,Brighton,Spurs,,x,21,25,54,100,4.761904762,4,1.851851852
 21,31/01/2021 14:00,King Power Stadium,Leicester,Leeds,,x,56,25,19,100,1.785714286,4,5.263157895
-21,31/01/2021 16:30,London Stadium,West Ham,Liverpool,,x,17,25,58,100,5.882352941,4,1.724137931
+21,31/01/2021 16:30,London Stadium,West Ham,Liverpool,,x,17,25,58,100,,,
 22,2/2/2021 19:45,Villa Park,Aston Villa,West Ham,,x,50,27,23,100,2,3.703703704,4.347826087
 22,2/2/2021 19:45,Turf Moor,Burnley,Man City,,x,12,17,71,100,8.333333333,5.882352941,1.408450704
 22,2/2/2021 19:45,Craven Cottage,Fulham,Leicester,,x,15,25,60,100,6.666666667,4,1.666666667
@@ -218,12 +218,12 @@
 22,2/2/2021 20:00,Old Trafford,Man Utd,Southampton,,x,55,25,20,100,,,
 22,2/2/2021 20:00,St. James' Park,Newcastle,Crystal Palace,,x,35,30,35,100,2.857142857,3.333333333,2.857142857
 22,3/2/2021 19:45,Tottenham Hotspur Stadium,Spurs,Chelsea,,x,36,35,29,100,2.777777778,2.857142857,3.448275862
-22,3/2/2021 20:00,Anfield,Liverpool,Brighton,,x,73,15,12,100,1.369863014,6.666666667,8.333333333
+22,3/2/2021 20:00,Anfield,Liverpool,Brighton,,x,72,16,12,100,,,
 23,6/2/2021 15:00,Villa Park,Aston Villa,Arsenal,,x,32,30,38,100,3.125,3.333333333,2.631578947
 23,6/2/2021 15:00,Turf Moor,Burnley,Brighton,,x,35,30,35,100,2.857142857,3.333333333,2.857142857
 23,6/2/2021 15:00,Craven Cottage,Fulham,West Ham,,x,26,36,38,100,3.846153846,2.777777778,2.631578947
 23,6/2/2021 15:00,Elland Road,Leeds,Crystal Palace,,x,45,25,30,100,2.222222222,4,3.333333333
-23,6/2/2021 15:00,Anfield,Liverpool,Man City,,x,36,30,34,100,2.777777778,3.333333333,2.941176471
+23,6/2/2021 15:00,Anfield,Liverpool,Man City,,x,36,30,34,100,,,
 23,6/2/2021 15:00,Old Trafford,Man Utd,Everton,,x,41,30,29,100,,,
 23,6/2/2021 15:00,St. James' Park,Newcastle,Southampton,,x,34,30,36,100,2.941176471,3.333333333,2.777777778
 23,6/2/2021 15:00,Bramall Lane,Sheffield Utd,Chelsea,,x,13,20,67,100,7.692307692,5,1.492537313
@@ -234,7 +234,7 @@
 24,13/02/2021 15:00,Stamford Bridge,Chelsea,Newcastle,,x,57,25,18,100,1.754385965,4,5.555555556
 24,13/02/2021 15:00,Selhurst Park,Crystal Palace,Burnley,,x,55,25,20,100,1.818181818,4,5
 24,13/02/2021 15:00,Goodison Park,Everton,Fulham,,x,60,22,18,100,1.612903226,5,5.555555556
-24,13/02/2021 15:00,King Power Stadium,Leicester,Liverpool,,x,28,22,50,100,3.571428571,4.545454545,2
+24,13/02/2021 15:00,King Power Stadium,Leicester,Liverpool,,x,28,22,50,100,,,
 24,13/02/2021 15:00,Etihad Stadium,Man City,Spurs,,x,48,32,20,100,2.083333333,3.125,5
 24,13/02/2021 15:00,St. Mary's Stadium,Southampton,Wolves,,x,45,30,25,100,2.222222222,3.333333333,4
 24,13/02/2021 15:00,The Hawthorns,West Brom,Man Utd,,x,20,24,56,100,5,4.166666667,1.785714286
@@ -244,8 +244,8 @@
 25,20/02/2021 15:00,Amex Stadium,Brighton,Crystal Palace,,x,35,30,35,100,2.857142857,3.333333333,2.857142857
 25,20/02/2021 15:00,Turf Moor,Burnley,West Brom,,x,40,30,30,100,2.5,3.333333333,3.333333333
 25,20/02/2021 15:00,Craven Cottage,Fulham,Sheffield Utd,,x,40,30,30,100,2.5,3.333333333,3.333333333
-25,20/02/2021 15:00,Anfield,Liverpool,Everton,,x,55,28,17,100,,,
-25,20/02/2021 15:00,Old Trafford,Man Utd,Newcastle,,x,56,29,15,100,,,
+25,20/02/2021 15:00,Anfield,Liverpool,Everton,,x,53,28,19,100,,,
+25,20/02/2021 15:00,Old Trafford,Man Utd,Newcastle,,x,60,25,15,100,,,
 25,20/02/2021 15:00,St. Mary's Stadium,Southampton,Chelsea,,x,18,28,54,100,5.555555556,3.571428571,1.851851852
 25,20/02/2021 15:00,London Stadium,West Ham,Spurs,,x,27,29,44,100,3.703703704,3.448275862,2.272727273
 25,20/02/2021 15:00,Molineux Stadium,Wolves,Leeds,,x,35,30,35,100,2.857142857,3.333333333,2.857142857
@@ -256,14 +256,14 @@
 26,27/02/2021 15:00,King Power Stadium,Leicester,Arsenal,,x,48,27,25,100,2.083333333,3.703703704,4
 26,27/02/2021 15:00,Etihad Stadium,Man City,West Ham,,x,71,19,10,100,1.408450704,5.263157895,10
 26,27/02/2021 15:00,St. James' Park,Newcastle,Wolves,,x,35,30,35,100,2.857142857,3.333333333,2.857142857
-26,27/02/2021 15:00,Bramall Lane,Sheffield Utd,Liverpool,,x,10,17,73,100,10,5.882352941,1.369863014
+26,27/02/2021 15:00,Bramall Lane,Sheffield Utd,Liverpool,,x,10,17,73,100,,,
 26,27/02/2021 15:00,Tottenham Hotspur Stadium,Spurs,Burnley,,x,65,20,15,100,1.538461538,5,6.666666667
 26,27/02/2021 15:00,The Hawthorns,West Brom,Brighton,,x,37,33,30,100,2.702702703,3.03030303,3.333333333
 27,6/3/2021 15:00,Villa Park,Aston Villa,Wolves,,x,45,30,25,100,2.222222222,3.333333333,4
 27,6/3/2021 15:00,Amex Stadium,Brighton,Leicester,,x,20,25,55,100,5,4,1.818181818
 27,6/3/2021 15:00,Turf Moor,Burnley,Arsenal,,x,20,25,55,100,5,4,1.818181818
 27,6/3/2021 15:00,Stamford Bridge,Chelsea,Everton,,x,38,30,32,100,,,
-27,6/3/2021 15:00,Anfield,Liverpool,Fulham,,x,75,15,10,100,1.333333333,6.666666667,10
+27,6/3/2021 15:00,Anfield,Liverpool,Fulham,,x,73,15,12,100,,,
 27,6/3/2021 15:00,Etihad Stadium,Man City,Man Utd,,x,53,23,24,100,1.886792453,4.347826087,4.166666667
 27,6/3/2021 15:00,Bramall Lane,Sheffield Utd,Southampton,,x,20,25,55,100,5,4,1.818181818
 27,6/3/2021 15:00,Tottenham Hotspur Stadium,Spurs,Crystal Palace,,x,55,28,17,100,1.818181818,3.571428571,5.882352941
@@ -278,18 +278,18 @@
 28,13/03/2021 15:00,Old Trafford,Man Utd,West Ham,,x,64,21,15,100,,,
 28,13/03/2021 15:00,St. James' Park,Newcastle,Aston Villa,,x,23,29,48,100,4.347826087,3.448275862,2.083333333
 28,13/03/2021 15:00,St. Mary's Stadium,Southampton,Brighton,,x,35,30,35,100,2.857142857,3.333333333,2.857142857
-28,13/03/2021 15:00,Molineux Stadium,Wolves,Liverpool,,x,10,20,70,100,10,5,1.428571429
+28,13/03/2021 15:00,Molineux Stadium,Wolves,Liverpool,,x,12,20,68,100,,,
 29,20/03/2021 15:00,Amex Stadium,Brighton,Newcastle,,x,37,30,33,100,2.702702703,3.333333333,3.03030303
 29,20/03/2021 15:00,Turf Moor,Burnley,Leicester,,x,18,20,62,100,5.555555556,5,1.612903226
 29,20/03/2021 15:00,Selhurst Park,Crystal Palace,Man Utd,,x,24,23,53,100,4.166666667,4.347826087,1.886792453
 29,20/03/2021 15:00,Craven Cottage,Fulham,Leeds,,x,27,30,43,100,3.703703704,3.333333333,2.325581395
-29,20/03/2021 15:00,Anfield,Liverpool,Chelsea,,x,49,28,23,100,2.040816327,3.571428571,4.347826087
+29,20/03/2021 15:00,Anfield,Liverpool,Chelsea,,x,50,27,23,100,,,
 29,20/03/2021 15:00,Etihad Stadium,Man City,Wolves,,x,72,17,11,100,1.388888889,5.882352941,9.090909091
 29,20/03/2021 15:00,Bramall Lane,Sheffield Utd,Aston Villa,,x,20,25,55,100,5,4,1.818181818
 29,20/03/2021 15:00,Tottenham Hotspur Stadium,Spurs,Southampton,,x,64,20,16,100,1.5625,5,6.25
 29,20/03/2021 15:00,The Hawthorns,West Brom,Everton,,x,20,22,58,100,,,
 29,20/03/2021 15:00,London Stadium,West Ham,Arsenal,,x,25,30,45,100,4,3.333333333,2.222222222
-30,3/4/2021 15:00,Emirates Stadium,Arsenal,Liverpool,,x,15,30,55,100,6.666666667,3.333333333,1.818181818
+30,3/4/2021 15:00,Emirates Stadium,Arsenal,Liverpool,,x,15,30,55,100,,,
 30,3/4/2021 15:00,Villa Park,Aston Villa,Fulham,,x,45,30,25,100,2.222222222,3.333333333,4
 30,3/4/2021 15:00,Stamford Bridge,Chelsea,West Brom,,x,68,17,15,100,1.470588235,5.882352941,6.666666667
 30,3/4/2021 15:00,Goodison Park,Everton,Crystal Palace,,x,60,24,16,100,1.5625,5,6.25
@@ -303,7 +303,7 @@
 31,10/4/2021 15:00,Turf Moor,Burnley,Newcastle,,x,36,30,34,100,2.777777778,3.333333333,2.941176471
 31,10/4/2021 15:00,Selhurst Park,Crystal Palace,Chelsea,,x,23,25,52,100,4.347826087,4,1.923076923
 31,10/4/2021 15:00,Craven Cottage,Fulham,Wolves,,x,33,33,34,100,3.03030303,3.03030303,2.941176471
-31,10/4/2021 15:00,Anfield,Liverpool,Aston Villa,,x,64,19,17,100,1.5625,5.263157895,5.882352941
+31,10/4/2021 15:00,Anfield,Liverpool,Aston Villa,,x,64,19,17,100,,,
 31,10/4/2021 15:00,Etihad Stadium,Man City,Leeds,,x,72,15,13,100,1.388888889,6.666666667,7.692307692
 31,10/4/2021 15:00,Bramall Lane,Sheffield Utd,Arsenal,,x,15,26,59,100,6.666666667,3.846153846,1.694915254
 31,10/4/2021 15:00,Tottenham Hotspur Stadium,Spurs,Man Utd,,x,43,26,31,100,2.325581395,3.846153846,3.225806452
@@ -313,7 +313,7 @@
 32,17/04/2021 15:00,Villa Park,Aston Villa,Man City,,x,20,25,55,100,5,4,1.818181818
 32,17/04/2021 15:00,Stamford Bridge,Chelsea,Brighton,,x,68,17,15,100,1.470588235,5.882352941,6.666666667
 32,17/04/2021 15:00,Goodison Park,Everton,Spurs,,x,35,30,35,100,2.857142857,3.333333333,2.857142857
-32,17/04/2021 15:00,Elland Road,Leeds,Liverpool,,x,13,20,67,100,7.692307692,5,1.492537313
+32,17/04/2021 15:00,Elland Road,Leeds,Liverpool,,x,13,20,67,100,,,
 32,17/04/2021 15:00,King Power Stadium,Leicester,West Brom,,x,68,17,15,100,1.470588235,5.882352941,6.666666667
 32,17/04/2021 15:00,Old Trafford,Man Utd,Burnley,,x,64,21,15,100,,,
 32,17/04/2021 15:00,St. James' Park,Newcastle,West Ham,,x,38,30,32,100,2.631578947,3.333333333,3.125
@@ -322,9 +322,9 @@
 33,24/04/2021 15:00,Emirates Stadium,Arsenal,Everton,,x,35,30,35,100,,,
 33,24/04/2021 15:00,Villa Park,Aston Villa,West Brom,,x,53,27,20,100,1.886792453,3.703703704,5
 33,24/04/2021 15:00,Craven Cottage,Fulham,Spurs,,x,20,25,55,100,5,4,1.818181818
-33,24/04/2021 15:00,Elland Road,Leeds,Man Utd,,x,25,23,2,50,4,4.347826087,50
+33,24/04/2021 15:00,Elland Road,Leeds,Man Utd,,x,25,23,52,100,4,4.347826087,1.923076923
 33,24/04/2021 15:00,King Power Stadium,Leicester,Crystal Palace,,x,64,20,16,100,1.5625,5,6.25
-33,24/04/2021 15:00,Anfield,Liverpool,Newcastle,,x,71,16,13,100,1.408450704,6.25,7.692307692
+33,24/04/2021 15:00,Anfield,Liverpool,Newcastle,,x,70,17,13,100,,,
 33,24/04/2021 15:00,Etihad Stadium,Man City,Southampton,,x,72,15,13,100,1.388888889,6.666666667,7.692307692
 33,24/04/2021 15:00,Bramall Lane,Sheffield Utd,Brighton,,x,34,30,36,100,2.941176471,3.333333333,2.777777778
 33,24/04/2021 15:00,London Stadium,West Ham,Chelsea,,x,23,25,52,100,4.347826087,4,1.923076923
@@ -334,7 +334,7 @@
 34,1/5/2021 15:00,Stamford Bridge,Chelsea,Fulham,,x,68,17,15,100,1.470588235,5.882352941,6.666666667
 34,1/5/2021 15:00,Selhurst Park,Crystal Palace,Man City,,x,11,18,71,100,9.090909091,5.555555556,1.408450704
 34,1/5/2021 15:00,Goodison Park,Everton,Aston Villa,,x,55,24,21,100,1.666666667,5,5
-34,1/5/2021 15:00,Old Trafford,Man Utd,Liverpool,,x,26,29,45,100,,,
+34,1/5/2021 15:00,Old Trafford,Man Utd,Liverpool,,x,30,29,41,100,,,
 34,1/5/2021 15:00,St. James' Park,Newcastle,Arsenal,,x,22,26,52,100,4.545454545,3.846153846,1.923076923
 34,1/5/2021 15:00,St. Mary's Stadium,Southampton,Leicester,,x,24,25,51,100,4.166666667,4,1.960784314
 34,1/5/2021 15:00,Tottenham Hotspur Stadium,Spurs,Sheffield Utd,,x,72,15,13,100,1.388888889,6.666666667,7.692307692
@@ -344,7 +344,7 @@
 35,8/5/2021 15:00,Craven Cottage,Fulham,Burnley,,x,31,33,36,100,3.225806452,3.03030303,2.777777778
 35,8/5/2021 15:00,Elland Road,Leeds,Spurs,,x,20,25,55,100,5,4,1.818181818
 35,8/5/2021 15:00,King Power Stadium,Leicester,Newcastle,,x,70,16,14,100,1.428571429,6.25,7.142857143
-35,8/5/2021 15:00,Anfield,Liverpool,Southampton,,x,71,16,13,100,1.408450704,6.25,7.692307692
+35,8/5/2021 15:00,Anfield,Liverpool,Southampton,,x,70,17,13,100,,,
 35,8/5/2021 15:00,Etihad Stadium,Man City,Chelsea,,x,50,27,23,100,2,3.703703704,4.347826087
 35,8/5/2021 15:00,Bramall Lane,Sheffield Utd,Crystal Palace,,x,25,30,45,100,4,3.333333333,2.222222222
 35,8/5/2021 15:00,London Stadium,West Ham,Everton,,x,23,27,50,100,,,
@@ -353,14 +353,14 @@
 36,11/5/2021 19:45,Turf Moor,Burnley,Leeds,,x,23,30,47,100,4.347826087,3.333333333,2.127659574
 36,11/5/2021 19:45,Goodison Park,Everton,Sheffield Utd,,x,70,17,13,100,1.388888889,6.666666667,7.692307692
 36,11/5/2021 20:00,Old Trafford,Man Utd,Leicester,,x,35,30,35,100,,,
-36,11/5/2021 20:00,The Hawthorns,West Brom,Liverpool,,x,12,15,73,100,8.333333333,6.666666667,1.369863014
+36,11/5/2021 20:00,The Hawthorns,West Brom,Liverpool,,x,12,15,73,100,,,
 36,11/5/2021 20:00,Selhurst Park,Crystal Palace,Aston Villa,,x,25,31,44,100,4,3.225806452,2.272727273
 36,12/5/2021 19:45,Stamford Bridge,Chelsea,Arsenal,,x,39,35,26,100,2.564102564,2.857142857,3.846153846
 36,12/5/2021 19:45,St. James' Park,Newcastle,Man City,,x,11,18,71,100,9.090909091,5.555555556,1.408450704
 36,12/5/2021 19:45,St. Mary's Stadium,Southampton,Fulham,,x,48,27,25,100,2.083333333,3.703703704,4
 36,12/5/2021 19:45,Tottenham Hotspur Stadium,Spurs,Wolves,,x,64,20,16,100,1.5625,5,6.25
 37,15/05/2021 15:00,Amex Stadium,Brighton,Man City,,x,10,20,70,100,10,5,1.428571429
-37,15/05/2021 15:00,Turf Moor,Burnley,Liverpool,,x,12,15,73,100,8.333333333,6.666666667,1.369863014
+37,15/05/2021 15:00,Turf Moor,Burnley,Liverpool,,x,12,15,73,100,,,
 37,15/05/2021 15:00,Stamford Bridge,Chelsea,Leicester,,x,36,30,34,100,2.777777778,3.333333333,2.941176471
 37,15/05/2021 15:00,Selhurst Park,Crystal Palace,Arsenal,,x,21,32,47,100,4.761904762,3.125,2.127659574
 37,15/05/2021 15:00,Goodison Park,Everton,Wolves,,x,63,22,15,100,1.538461538,5,6.666666667
@@ -374,7 +374,7 @@
 38,23/05/2021 16:00,Craven Cottage,Fulham,Newcastle,,x,31,33,36,100,3.225806452,3.03030303,2.777777778
 38,23/05/2021 16:00,Elland Road,Leeds,West Brom,,x,42,30,28,100,2.380952381,3.333333333,3.571428571
 38,23/05/2021 16:00,King Power Stadium,Leicester,Spurs,,x,37,30,33,100,2.702702703,3.333333333,3.03030303
-38,23/05/2021 16:00,Anfield,Liverpool,Crystal Palace,,x,69,17,14,100,1.449275362,5.882352941,7.142857143
+38,23/05/2021 16:00,Anfield,Liverpool,Crystal Palace,,x,69,17,14,100,,,
 38,23/05/2021 16:00,Etihad Stadium,Man City,Everton,,x,55,25,20,100,,,
 38,23/05/2021 16:00,Bramall Lane,Sheffield Utd,Burnley,,x,35,30,35,100,2.857142857,3.333333333,2.857142857
 38,23/05/2021 16:00,London Stadium,West Ham,Southampton,,x,35,30,35,100,2.857142857,3.333333333,2.857142857
